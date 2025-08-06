@@ -1,4 +1,4 @@
 ---
 title: 'Utils API Reference'
-openapi: 'POST /utils'
+openapi: 'POST /greet/{name}'
 ---
