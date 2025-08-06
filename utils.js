@@ -1,22 +1,18 @@
 /**
- * Calculates the factorial of a number.
- *
- * @param {number} n - A non-negative integer
- * @returns {number} Factorial of `n`
- * @throws {Error} If `n` is negative
+ * GET /greet
+ * Query parameter: ?name=string
+ * Response: { "message": string }
  */
-function factorial(n) {
-  if (n < 0) throw new Error("Negative input not allowed");
-  if (n === 0) return 1;
-  return n * factorial(n - 1);
-}
+app.get('/greet', (req, res) => {
+  const name = req.query.name;
+  if (!name) {
+    return res.status(400).json({ error: 'Name parameter is required' });
+  }
 
-/**
- * Greets a user by name.
- *
- * @param {string} name - The name of the user
- * @returns {string} A greeting message
- */
-function greet(name) {
-  return `Hello, ${name}! Welcome to Mintlify docs.`;
-}
+  function greet(userName) {
+    return `Hello, ${userName}! Welcome to Mintlify docs.`;
+  }
+
+  const message = greet(name);
+  res.json({ message });
+});
